@@ -7,82 +7,49 @@
   <script src="js/jquery.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script>
-  
-  var books = [
-    // Old Testament
-    // Pentateuch of Moses
-    { name: "Gen" },
-    { name: "Ex" },
-    { name: "Lev" },
-    { name: "Num" },
-    { name: "Deut", chaptersCount: 34, startDate: "17/11", endDate: "3/12" },
-
-    // Historical Books
-    { name: "Nav", chaptersCount: 24, startDate: "4/12", endDate: "15/12" },
-    { name: "Judg", chaptersCount: 21, startDate: "16/12", endDate: "26/12" },
-    { name: "Rth", chaptersCount: 4, startDate: "27/12", endDate: "28/12" },
-    { name: "1Sam", chaptersCount: 31, startDate: "29/12", endDate: "14/1" },
-    { name: "2Sam" },
-    { name: "1King" },
-    { name: "2King" },
-    { name: "1Chron" },
-    { name: "2Chron" },
-    { name: "Ezr" },
-    { name: "1Ezr" },
-    { name: "2Ezr" },
-    { name: "Nehem" },
-    { name: "Tov" },
-    { name: "Judf" },
-    { name: "Est" },
-    { name: "1Mak" },
-    { name: "2Mak" },
-    { name: "3Mak" },
+  var reading = 
+	[
+		// December
+		{ date: "1/12", books: "Deut:29-30,Ps:41,Act:2" },
+		{ date: "2/12", books: "Deut:31-32,Ps:42,Act:3" },
+		{ date: "3/12", books: "Deut:33-34,Ps:43,Act:4" },
+		{ date: "4/12", books: "Nav:1-2,Ps:44,Act:5" },
+		{ date: "5/12", books: "Nav:3-4,Ps:45,Act:6" },
+		{ date: "6/12", books: "Nav:5-6,Ps:46,Act:7" },
+		{ date: "7/12", books: "Nav:7-8,Ps:47,Act:8" },
+		{ date: "8/12", books: "Nav:9-10,Ps:48,Act:9" },
+		{ date: "9/12", books: "Nav:11-12,Ps:49,Act:10" },
+		{ date: "10/12", books: "Nav:13-14,Ps:50,Act:11" },
+		{ date: "11/12", books: "Nav:15-16,Ps:51,Act:12" },
+		{ date: "12/12", books: "Nav:17-18,Ps:52,Act:13" },
+		{ date: "13/12", books: "Nav:19-20,Ps:53,Act:14" },
+		{ date: "14/12", books: "Nav:21-22,Ps:54,Act:15" },
+		{ date: "15/12", books: "Nav:23-24,Ps:55,Act:16" },
+		{ date: "16/12", books: "Judg:1-2,Ps:56,Act:17" },
+		{ date: "17/12", books: "Judg:3-4,Ps:57,Act:18" },
+		{ date: "18/12", books: "Judg:5-6,Ps:58,Act:19" },
+		{ date: "19/12", books: "Judg:7-8,Ps:59,Act:20" },
+		{ date: "20/12", books: "Judg:9-10,Ps:60,Act:21" },
+		{ date: "21/12", books: "Judg:11-12,Ps:61,Act:22" },
+		{ date: "22/12", books: "Judg:13-14,Ps:62,Act:23" },
+		{ date: "23/12", books: "Judg:15-16,Ps:64,Act:24" },
+		{ date: "24/12", books: "Judg:17-18,Ps:65,Act:25" },
+		{ date: "25/12", books: "Judg:19-20,Ps:66,Act:26" },
+		{ date: "26/12", books: "Judg:21-22,Ps:67,Act:27" },
+		{ date: "27/12", books: "Ruth:1-2,Ps:68,Act:28" },
+		{ date: "28/12", books: "Ruth:3-4,Ps:69,Jac:1" },
+		{ date: "29/12", books: "1Sam:1-2,Ps:70,Jac:2" },
+		{ date: "30/12", books: "1Sam:3-4,Ps:71,Jac:3" },
+		{ date: "31/12", books: "1Sam:5-6,Ps:72,Jac:4" }
+	];
     
-    // Teaching Books
-    { name: "job" },
-    { name: "Ps", chaptersCount: 151, startDate: "22/10", endDate: "21/3" },
-    { name: "Prov" },
-    { name: "Eccl" },
-    { name: "Song" },
-    { name: "Solom" },
-    { name: "Sir" },
-    
-    // Prophets' Books
-    { name: "Lam" },
-    { name: "pJer" },
-    { name: "Is" },
-    { name: "Jer" },
-    { name: "Bar" },
-    { name: "Ezek" },
-    { name: "Dan" },
-    { name: "Hos" },
-    { name: "Joel" },
-    { name: "Am" },
-    { name: "Avd" },
-    { name: "Jona" },
-    { name: "Mic" },
-    { name: "Naum" },
-    { name: "Habak" },
-    { name: "Sofon" },
-    { name: "Hag" },
-    { name: "Zah" },
-    { name: "Mal" },
-    
-    // New Testament
-    { name: "Act", chaptersCount: 28, startDate: "30/11", endDate: "27/12" },
-    { name: "Jac", chaptersCount: 5, startDate: "28/12", endDate: "1/1" }
-  ];
-  
-  
-  
   $(function() {
     $("#datepicker").datepicker({
       onSelect: function(dateText) {
 	generateLinks();      
       }
     });
-      
-      
+            
     $("#datepicker").datepicker("setDate", new Date());
 	
     generateLinks();	
@@ -100,54 +67,29 @@
     
     var selectedDate = $("#datepicker").datepicker( 'getDate' );
     
-    for (var i = 0; i < books.length; ++i) {
-      var book = books[i];
-      
-      if (!book.chaptersCount || !book.startDate || !book.endDate) {
-	// Book data hasnt been entered
-	continue;
+    for (var i = 0; i < reading.length; ++i) {
+      var r = reading[i];
+
+      var parts = r.date.split('/');
+      var day = parseInt(parts[0]);
+      var month = parseInt(parts[1]);	  
+      if (day != selectedDate.getDate() || month - 1 != selectedDate.getMonth()) {
+		// Wrong date
+		continue;
       }
       
-      var parts = book.startDate.split('/');
-      var startDay = parseInt(parts[0]);
-      var startMonth = parseInt(parts[1]);
-      
-      parts = book.endDate.split('/');
-      var endDay = parseInt(parts[0]);
-      var endMonth = parseInt(parts[1]);
-      
-      var today = new Date();
-      var startDate, endDate;
-      if (endMonth >= startMonth) {
-	// Both start and end date lie within one year
-	startDate = new Date(today.getFullYear(), startMonth - 1, startDay);
-	endDate = new Date(today.getFullYear(), endMonth - 1, endDay);
-      } else {
-	// End date starts in the next year
-	startDate = new Date(today.getFullYear(), startMonth - 1, startDay);
-	endDate = new Date(today.getFullYear() + 1, endMonth - 1, endDay);
-      }
-      
-      if (selectedDate < startDate || selectedDate > endDate) {
-	// Selected date is beyond the book reading frame
-	continue;
-      }
-      
-      // Selected date is inside the book reading frame
-      // Determine what chapters to read
-      var totalDays = 1 + Math.round((endDate - startDate) / 86400000);
-      var daysFromStart = Math.round((selectedDate - startDate) / 86400000);
-      
-      var twoChapters = book.chaptersCount >= totalDays * 2;
-      
-      var startChapter = 1 + Math.round(book.chaptersCount * daysFromStart / totalDays);
-      
-      // First link
-      $("#links").append(buildLink(book.name, startChapter));
-      
-      if (twoChapters) {
-	$("#links").append(buildLink(book.name, startChapter + 1));
-      }
+      books = r.books.split(',');
+	  for (var j = 0; j < books.length; ++j) {
+		var book = books[j];
+		
+		parts = book.split(':');
+		var bookName = parts[0];
+		
+		var chapters = parts[1].split('-');
+		for (var k = 0; k < chapters.length; ++k) {
+			$("#links").append(buildLink(bookName, chapters[k]));
+		}
+	  }
     }   
   }
   
@@ -157,7 +99,6 @@
  
 <p>Date: <input type="text" id="datepicker"></p>
 <p id="links"></p>
- 
- 
+  
 </body>
 </html>
