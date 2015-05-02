@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bible Reader</title>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/reading.js"></script>
+  <script>
+  $(function() {
+    $("#datepicker").datepicker({
+      onSelect: function(dateText) {
+	generateLinks();      
+      }
+    });
+            
+    $("#datepicker").datepicker("setDate", new Date());
+	
+    generateLinks();	
+  });
+  
+  function buildLink(name, chapter)
+  {
+    return "<a href=\"http://azbyka.ru/biblia/?" + name + "."+chapter+
+      "&r\">http://azbyka.ru/biblia/?" + name + "." + chapter + "&r</a><br/>";
+  }
+  
+  function generateLinks()
+  {
+    $("#links").text("");
+    
+    var selectedDate = $("#datepicker").datepicker( 'getDate' );
+    
+    for (var i = 0; i < reading.length; ++i) {
+      var r = reading[i];
+
+      var parts = r.date.split('/');
+      var day = parseInt(parts[0]);
+      var month = parseInt(parts[1]);	  
+      if (day != selectedDate.getDate() || month - 1 != selectedDate.getMonth()) {
+		// Wrong date
+		continue;
+      }
+      
+      books = r.books.split(',');
+	  for (var j = 0; j < books.length; ++j) {
+		var book = books[j];
+		
+		parts = book.split(':');
+		var bookName = parts[0];
+		
+		var chapter = parts[1];
+		$("#links").append(buildLink(bookName, chapter));
+	  }
+    }   
+  }
+  
+  </script>
+</head>
+<body>
+ 
+<p>Date: <input type="text" id="datepicker"></p>
+<p id="links"></p>
+  
+</body>
+</html>
