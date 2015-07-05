@@ -65,18 +65,26 @@ namespace BibleReader.Generator
 
 		private static readonly Book[] _books =new[]
 		{
+			new Book("Tov", 14, 7, 12),
+			new Book("Judf", 16, 7, 26),
 			new Book("Job", 42, 3, 22),
 			new Book("Solom", 19, 5, 3),
-			new Book("Sir", 52, 5, 22),
+			new Book("Sir", 51, 5, 22),
 			new Book("Is", 66, 4, 10, 2),
 			new Book("Jer", 52, 5, 13, 2),
 			new Book("Lam", 5, 6, 8, 2),
 			new Book("pJer", 1, 6, 10),
 			new Book("Bar", 5, 6, 11, 2),
 			new Book("Jer", 52, 6, 13, 2),
+			new Book("Lam",  5, 7, 9, 2),
+			new Book("pJer", 1, 7, 11),
+			new Book("Bar",  5, 7, 12, 2),
+			new Book("Ezek",  48, 7, 15, 2),
 
 			new Book("Mt", 28, 5, 21),
 			new Book("Mk", 16, 6, 18),
+			new Book("Lk", 24, 7, 4),
+			new Book("Jn", 21, 7, 28),
 			new Book("2Thes", 3, 3, 30),
 			new Book("1Tim", 6, 4, 2),
 			new Book("2Tim", 4, 4, 8),
