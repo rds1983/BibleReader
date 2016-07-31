@@ -19,7 +19,7 @@
     $("#datepicker").datepicker("setDate", new Date());
 
     var selectedDate = $("#datepicker").datepicker( 'getDate' );    
-    generateLinks($("#links"), selectedDate, "r");	
+    generateLinks($("#links"), selectedDate, "a");	
   });
 
   // Google Analytics
@@ -34,12 +34,12 @@
   </script>
 </head>
 <body>
-<p style="text-align: right"><a href="index_eng.html">English Version</a></p>
+<p style="text-align: right"><a href="index.html">Русская версия</a></p>    
 <p>
-  Ежедневное чтение Священного Писания на основании трудов отца Даниила Сысоева.<br/>
-  Разработчик: Роман Шапиро. Электронная почта: <a href="mailto://netframeworker@gmail.com">netframeworker@gmail.com</a>
+  Every day Bible reader based on the works of father Daniil Sysoev.<br/>
+  The project is developed by Roman Shapiro. Email: <a href="mailto://netframeworker@gmail.com">netframeworker@gmail.com</a>
 </p>
-<p>Дата: <input type="text" id="datepicker"></p>
+<p>Date: <input type="text" id="datepicker"></p>
 <p id="links"></p>
   
 </body>
