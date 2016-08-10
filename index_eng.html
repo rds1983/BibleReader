@@ -9,17 +9,21 @@
   <script src="js/reading.js"></script>
   <script src="js/index.js"></script>
   <script>
+  function updateLinks() {
+    var selectedDate = $("#datepicker").datepicker( 'getDate' );    
+    generateLinks($("#links"), selectedDate, "a");
+  }
+  
   $(function() {
     $("#datepicker").datepicker({
       onSelect: function(dateText) {
-	      generateLinks();
+        updateLinks();
       }
     });
             
     $("#datepicker").datepicker("setDate", new Date());
 
-    var selectedDate = $("#datepicker").datepicker( 'getDate' );    
-    generateLinks($("#links"), selectedDate, "a");	
+    updateLinks();
   });
 
   // Google Analytics
