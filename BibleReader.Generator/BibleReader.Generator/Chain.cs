@@ -67,8 +67,20 @@ namespace BibleReader.Generator
 			{
 				var month = m <= 12 ? m : m - 12;
 				var daysInMonth = DateTime.DaysInMonth(year, month);
-				for (var day = 1; day <= daysInMonth; ++day)
+
+				// We start from September 14th as Church uses Julian calendar
+				for (var d = 14; d < daysInMonth + 14; ++d)
 				{
+					var day = d <= daysInMonth ? d: d - daysInMonth;
+					if (d == daysInMonth + 1)
+					{
+						++month;
+						if (month > 12)
+						{
+							month = 1;
+						}
+					}
+
 					var element = GetElement(month, day);
 
 					var readingsList = new List<Reading>();

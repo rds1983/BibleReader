@@ -6,8 +6,7 @@ namespace BibleReader.Generator
 {
 	class MainClass
 	{
-		private static readonly Book[] _books =new[]
-		{
+		private static readonly Book[] Books ={
 			new Book("Gen", 50),
 			new Book("Ex", 40),
 			new Book("Lev", 27),
@@ -28,9 +27,9 @@ namespace BibleReader.Generator
 			new Book("Tov", 14),
 			new Book("Judf", 16),
 			new Book("Est", 10),
-			new Book("1Mak", 16),
-			new Book("2Mak", 15),
-			new Book("3Mak", 7),
+			new Book("1Mac", 16),
+			new Book("2Mac", 15),
+			new Book("3Mac", 7),
 			new Book("3Ezr", 16),
 			new Book("Job", 42),
 			new Book("Ps", 151),
@@ -88,8 +87,7 @@ namespace BibleReader.Generator
 			new Book("Apok", 22)
 		};
 
-		private static readonly string[] _OldCovenantReadings = new[]
-		                                                 	{
+		private static readonly string[] OldCovenantReadings = {
 																"Gen", "Ex", "Lev", "Num", "Deut", "Nav", "Judg",
 																"1Sam", "2Sam", "1King", "2King", "1Chron", "2Chron",
 																"Ezr", "Nehem", "Est", "Is", 
@@ -99,8 +97,7 @@ namespace BibleReader.Generator
 																"Am", "Avd", "Jona", "Mal"
 		                                                 	};
 
-		private static readonly string[] _NewCovenantReadings = new[]
-		                                                 	{
+		private static readonly string[] NewCovenantReadings = {
 																"Mt", "Mk", "Lk", "Jn", "Act",
 																"1Pet", "2Pet", "1Jn", "2Jn", "3Jn",
 																"Juda", "Rom", "1Cor", "2Cor",
@@ -110,16 +107,15 @@ namespace BibleReader.Generator
 																"Mt", "Mk", "Lk", "Jn", "Apok",
 		                                                 	};
 
-		private static readonly string[] _additionalReadings = new[]
-		                                                 	{
+		private static readonly string[] AdditionalReadings = {
 																"Prov", "Eccl", "Song", "Ps", "Job",
-																"Solom", "Sir", "Tov", "Judf", "1Mak",
+																"Solom", "Sir", "Tov", "Judf", "1Mac",
 																"Mic", "Naum", "Habak", "Sofon", "Hag"
 		                                                 	};
 
 		private static Book GetBookByName(string name)
 		{
-			return (from book in _books where book.Name == name select book).FirstOrDefault();
+			return (from book in Books where book.Name == name select book).FirstOrDefault();
 		}
 
 		private static Chain BuildChain(IEnumerable<string> readings)
@@ -143,19 +139,19 @@ namespace BibleReader.Generator
 		public static void Main (string[] args)
 		{
 			// Old Covenant chain
-			var OldCovenantChain = BuildChain(_OldCovenantReadings);
-			OldCovenantChain.SetDefaultReadingSpeed(2);
+			var oldCovenantChain = BuildChain(OldCovenantReadings);
+			oldCovenantChain.SetDefaultReadingSpeed(2);
 
-			var NewCovenantChain = BuildChain(_NewCovenantReadings);
-			NewCovenantChain.SetDefaultReadingSpeed(1);
+			var newCovenantChain = BuildChain(NewCovenantReadings);
+			newCovenantChain.SetDefaultReadingSpeed(1);
 
-			var additionalChain = BuildChain(_additionalReadings);
+			var additionalChain = BuildChain(AdditionalReadings);
 			additionalChain.SetDefaultReadingSpeed(1);
 
 			var allElements = new List<ChainElement[][]>
 			                  	{
-			                  		OldCovenantChain.CalculateChainData(),
-									NewCovenantChain.CalculateChainData(),
+			                  		oldCovenantChain.CalculateChainData(),
+									newCovenantChain.CalculateChainData(),
 									additionalChain.CalculateChainData()
 			                  	};
 
@@ -164,12 +160,12 @@ namespace BibleReader.Generator
 			for (var m = 1; m <= 12; ++m)
 			{
 				var monthName = new DateTime(year, m, 1).ToString("MMMM");
-				Console.WriteLine(string.Format("\t// {0}", monthName));
+				Console.WriteLine("\t// {0}", monthName);
 				var daysInMonth = DateTime.DaysInMonth(year, m);
 				for (var d = 1; d <= daysInMonth; ++d)
 				{
 
-					Console.Write(string.Format("\t{{ date: \"{0}/{1}\", books: \"", d, m));
+					Console.Write("\t{{ date: \"{0}/{1}\", books: \"", d, m);
 
 					var readings = new List<string>();
 					foreach (var ae in allElements)
