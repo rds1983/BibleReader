@@ -88,7 +88,7 @@ namespace BibleReader.Generator
 		};
 
 		private static readonly string[] OldCovenantReadings = {
-																"Gen", "Ex", "Lev", "Num", "Deut", "Nav", "Judg",
+																"Gen", "Ex", "Lev", "Num", "Deut", "Nav", "Judg", "Ruth",
 																"1Sam", "2Sam", "1King", "2King", "1Chron", "2Chron",
 																"Ezr", "Nehem", "Est", "Is", 
 																"Jer", "Lam", "pJer", "Bar", 
@@ -98,7 +98,7 @@ namespace BibleReader.Generator
 		                                                 	};
 
 		private static readonly string[] NewCovenantReadings = {
-																"Mt", "Mk", "Lk", "Jn", "Act",
+																"Mt", "Mk", "Lk", "Jn", "Act", "Jac",
 																"1Pet", "2Pet", "1Jn", "2Jn", "3Jn",
 																"Juda", "Rom", "1Cor", "2Cor",
 																"Gal", "Eph", "Phil", "Col",
