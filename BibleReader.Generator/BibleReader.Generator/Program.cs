@@ -14,7 +14,7 @@ namespace BibleReader.Generator
 			new Book("Deut", 34),
 			new Book("Nav", 24),
 			new Book("Judg", 21),
-			new Book("Ruth", 4),
+			new Book("Rth", 4),
 			new Book("1Sam", 31),
 			new Book("2Sam", 24),
 			new Book("1King", 22),
@@ -88,7 +88,7 @@ namespace BibleReader.Generator
 		};
 
 		private static readonly string[] OldCovenantReadings = {
-																"Gen", "Ex", "Lev", "Num", "Deut", "Nav", "Judg", "Ruth",
+																"Gen", "Ex", "Lev", "Num", "Deut", "Nav", "Judg", "Rth",
 																"1Sam", "2Sam", "1King", "2King", "1Chron", "2Chron",
 																"Ezr", "Nehem", "Est", "Is", 
 																"Jer", "Lam", "pJer", "Bar", 
